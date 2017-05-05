@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hyperviseur Mine d'Asse</title>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/Mine.css"/>
+
+	</head>
+
+	<body>
+
+		<div class="map" id="map">
+
+			<div class="map__image">
+				<svg width="800" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+				 <g>
+				  <title>Layer 1</title>
+				  <rect fill="#005fbf" stroke="#000000" x="18.25004" y="26.07368" width="700" height="530" id="fond"/>
+				  <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="416.34691" y="21.83627" width="12.56503" height="209.41703" id="asc1"/>
+				  <rect fill="#fc1919" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="398.60368" y="11.57814" width="48.37043" height="20.54086" id="dome"/>
+				  <rect transform="matrix(2.04054, -0.470889, 0.470889, 2.04054, -46.7971, 66.1761)" id="tunnel2" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="131.4671" y="72.06911" width="54.84169" height="6"/>
+				  <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="259.13081" y="125.15408" width="157.06277" height="12.56503" id="tunnel1"/>
+				  <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="416.50631" y="230.55389" width="12.56503" height="209.41703" id="asc2"/>
+				  <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="259.02944" y="198.69447" width="157.06277" height="12.56503" id="tunnel3"/>
+				  <rect transform="matrix(1.90646, 0.866578, -0.866578, 1.90646, 125.068, -123.779)" id="tunnel4" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="136.17522" y="130.33815" width="41.84856" height="6"/>
+				  <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="259.02944" y="278.20749" width="157.06277" height="12.56503" id="tunnel5"/>
+				  <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="257.81057" y="363.84965" width="157.06277" height="12.56503" id="tunnel6"/>
+				  <ellipse fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" cx="423.28564" cy="465.79628" id="hell" rx="22.86" ry="27.3326"/>
+				  <rect id="cave1" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="197.82096" y="113.6321" width="61.64713" height="23.82936"/>
+				  <rect id="cave2" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="197.82095" y="145.10599" width="61.64713" height="23.82936"/>
+				  <rect id="cave3" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="196.49572" y="198.11468" width="61.64713" height="23.82936"/>
+				  <rect id="cave4" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="214.38617" y="237.20858" width="61.64713" height="23.82936"/>
+				  <rect id="cave5" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="196.49573" y="267.02597" width="61.64713" height="23.82936"/>
+				  <rect transform="matrix(-0.0162354, 2.0941, -2.0941, -0.0162354, 662.801, 132.92)" id="tunnel7" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="110.00976" y="193.51758" width="37.03125" height="6"/>
+				  <rect id="cave6" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="197.15832" y="352.50248" width="61.64713" height="23.82936"/>
+				  <rect id="cave7" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="208.42269" y="385.63292" width="61.64713" height="23.82936"/>
+				  <rect id="cave8" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="239.56529" y="416.77552" width="61.64713" height="23.82936"/>
+				  <rect id="tunnel8" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="429.07134" y="278.62163" width="77.54973" height="12.56503"/>
+				  <rect id="cave9" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="508.58442" y="247.14774" width="78.87496" height="43.70763"/>
+				 </g>
+				</svg>
+			</div>
+
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.1/svg.min.js"></script>
+		<script src="js/controleur.js"></script>
+	</body>
+</html>

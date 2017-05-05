@@ -1,9 +1,21 @@
 # ProjetIS
 Dépot git pour le projet d'IS.
 
-TEST
+Organisation du dossier :
 
+.
+├── css
+│   └── Mine.css
+├── img
+│   ├── Mine.svg
+│   ├── Schnitt-Schachtanlage_Asse.svg.png
+├── index.html
+├── js
+│   └── controleur.js
+└── php
+    ├── ConnectionDB.php
+    ├── ControleurDB.php
+    └── Redirection.php
 
-46456
+4 directories, 12 files
 
-branche test
