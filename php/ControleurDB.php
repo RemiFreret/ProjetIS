@@ -7,10 +7,10 @@
 
     }
 
-    public function getTest () {
+    public function initRobot () {
       $bdd = ConnectionDB::getConnection();
 
-      $query = "SELECT * FROM Robot";
+      $query = "SELECT R.nomRobot, P.nomPosition, E.couleur FROM Robot as R, Etat as E, Position as P WHERE R.etat = E.id AND R.position = P.id";
 
       $requete = $bdd->prepare($query);
       $requete->execute();
