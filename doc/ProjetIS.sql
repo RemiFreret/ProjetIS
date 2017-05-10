@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 05, 2017 at 07:12 PM
+-- Generation Time: May 10, 2017 at 10:51 AM
 -- Server version: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -99,7 +99,9 @@ CREATE TABLE `Robot` (
 --
 
 INSERT INTO `Robot` (`id`, `nomRobot`, `etat`, `position`) VALUES
-(1, 'Robot1', 1, 1);
+(1, 'Robot1', 2, 2),
+(2, 'Robot2', 2, 5),
+(3, 'Robot3', 1, 20);
 
 --
 -- Indexes for dumped tables
@@ -122,9 +124,7 @@ ALTER TABLE `Position`
 -- Indexes for table `Robot`
 --
 ALTER TABLE `Robot`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `etat` (`etat`),
-  ADD UNIQUE KEY `position` (`position`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -139,18 +139,7 @@ ALTER TABLE `Position`
 -- AUTO_INCREMENT for table `Robot`
 --
 ALTER TABLE `Robot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `Robot`
---
-ALTER TABLE `Robot`
-  ADD CONSTRAINT `fkEtat` FOREIGN KEY (`etat`) REFERENCES `Etat` (`id`),
-  ADD CONSTRAINT `fkPosition` FOREIGN KEY (`position`) REFERENCES `Position` (`id`);
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

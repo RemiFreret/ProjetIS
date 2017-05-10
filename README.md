@@ -43,7 +43,7 @@ On commence par faire une requête en AJAX dans le controleur.js (dans votre fon
 
 $.ajax({
   url: 'php/Redirection.php',
-  data: "requete=initRobot",
+  data: "requete=initRobot",    // si vous avez 2 parametre : "p1=truc1&p2=truc2"
   dataType: 'json',
   success: function(data) {
     console.log("Success");
