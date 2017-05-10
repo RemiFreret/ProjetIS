@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 10, 2017 at 10:51 AM
+-- Generation Time: May 10, 2017 at 11:07 PM
 -- Server version: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -41,6 +41,31 @@ INSERT INTO `Etat` (`id`, `nomEtat`, `couleur`) VALUES
 (2, 'on', '#26FF00'),
 (3, 'hs', '#F00000'),
 (4, 'reparation', '#F0B400');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Mine`
+--
+
+CREATE TABLE `Mine` (
+  `id` int(11) NOT NULL,
+  `dechetTotal` int(11) NOT NULL,
+  `dechetExtrait` int(11) NOT NULL,
+  `dechetExtraitMois` int(11) NOT NULL,
+  `dechetExtraitSemaine` int(11) NOT NULL,
+  `mouleJour` int(11) NOT NULL,
+  `mouleAjd` int(11) NOT NULL,
+  `capMoule` int(11) NOT NULL,
+  `jourDebut` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Mine`
+--
+
+INSERT INTO `Mine` (`id`, `dechetTotal`, `dechetExtrait`, `dechetExtraitMois`, `dechetExtraitSemaine`, `mouleJour`, `mouleAjd`, `capMoule`, `jourDebut`) VALUES
+(0, 76800, 10344, 240, 72, 8, 3, 3, '07/03/2016');
 
 -- --------------------------------------------------------
 
@@ -99,8 +124,8 @@ CREATE TABLE `Robot` (
 --
 
 INSERT INTO `Robot` (`id`, `nomRobot`, `etat`, `position`) VALUES
-(1, 'Robot1', 2, 2),
-(2, 'Robot2', 2, 5),
+(1, 'Robot1', 2, 11),
+(2, 'Robot2', 3, 10),
 (3, 'Robot3', 1, 20);
 
 --
@@ -111,6 +136,12 @@ INSERT INTO `Robot` (`id`, `nomRobot`, `etat`, `position`) VALUES
 -- Indexes for table `Etat`
 --
 ALTER TABLE `Etat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `Mine`
+--
+ALTER TABLE `Mine`
   ADD PRIMARY KEY (`id`);
 
 --
