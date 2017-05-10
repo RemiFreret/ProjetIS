@@ -1,0 +1,42 @@
+body {
+  background-color: #e3e3e3;
+  margin: 5px;
+}
+
+#date, #heure, #jour {
+  text-align: center;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+#infoGeneral {
+  margin-top: -25px;
+  margin-bottom: 25px;
+}
+
+#infoGeneral, #infoPlus {
+  border-style: solid;
+  border-color: grey;
+  border-width: 2px;
+}
+
+#ecart {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.progress {
+  margin-bottom: 10px;
+}
+
+.progressTitle {
+  text-indent: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.progress-bar {
+    font-size: 20px;
+    font-weight: bold;
+}

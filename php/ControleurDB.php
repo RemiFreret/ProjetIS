@@ -29,5 +29,16 @@
       echo json_encode($requete->fetchAll());
     }
 
+    // Return how many robots there are
+    public function infoMine () {
+      $bdd = ConnectionDB::getConnection();
+
+      $query = "SELECT * FROM Mine Where id = 0";
+
+      $requete = $bdd->prepare($query);
+      $requete->execute();
+      echo json_encode($requete->fetchAll());
+    }
+
   }
  ?>
