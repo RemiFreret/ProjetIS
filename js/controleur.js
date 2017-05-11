@@ -71,13 +71,30 @@ function initRobot(nbRobot) {
   for (var i = 0; i < nbRobot; i++) {
     robots[i] = draw.circle(14).id("Robot"+(i+1)).fill("#e3e3e3");
     updateRobot(robots[i]);
-    //TODO onclic pour chaque robot
+    document.getElementById("Robot"+(i+1)).setAttribute( "onclick","robotOnClic("+ (i+1) + ")");
   }
 
 } // Fin initRobot
 
-function robotOnClic() {
-  //TODO
+function robotOnClic(i) {
+	document.getElementById("image_mine").setAttribute("src","/ProjetIS/img/Robot" + i + ".jpg");
+	$.ajax({
+      url: 'php/Redirection.php',
+      data: "requete=infoRobot&robot=" + i,
+      dataType: 'json',
+      success: function(data) {
+		document.getElementById('progress5').style.width =data[0].batterie + "%"
+		document.getElementById('spanProgress5').innerHTML = data[0].batterie
+		document.getElementById('operateur').innerHTML = data[0].nomOpérateur
+		document.getElementById('position').innerHTML = data[0].nomPosition
+		document.getElementById('etat').innerHTML = data[0].nomEtat
+	
+	},
+      error: function(data) {
+        console.log("Error");
+      }
+	
+})
 }
 
 // Mise à jour automatique des robots

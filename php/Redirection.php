@@ -15,6 +15,11 @@
       $bdd = ControleurDB::infoMine();
       echo $bdd;
     }
+	if (strcmp($_GET["requete"], "infoRobot") == 0) {
+		$robotID = substr($_GET["robot"], -1, 1);
+		$bdd = ControleurDB::infoRobot($robotID);
+      echo $bdd;
+    }
   }
 
   if ( isset($_GET["file"]) ) {
