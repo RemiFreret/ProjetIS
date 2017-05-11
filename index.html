@@ -56,7 +56,7 @@
 			<table id="infoPlusMain" class="table">
 				<thead>
 		      <tr>
-		        <th>Date</th>
+		        <th width="150px">Date</th>
 		        <th>Type</th>
 		        <th>Description</th>
 		      </tr>
@@ -70,21 +70,27 @@
 				</tbody>
 			</table>
 
-			<div id="infos_robots">
-				<img id="image_mine", width=310, height=200></img>
-				<div id="barres_robot">
-					<div class="progressTitle">Batterie :</div>
-					<div class="progress col-md-2">
-						<div id="progress5" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-							<span id="spanProgress5"></span>
+			<div id="infoPlusRobot" style="display: none;">
+				<img id="image_mine" class="col-md-7" width="310" height="200"></img>
+				<div class="col-md-5">
+					<div id="barres_robot">
+						<div class="progressTitle">Batterie :</div>
+						<div class="progress">
+							<div id="progress5" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+								<span id="spanProgress5"></span>
+							</div>
 						</div>
 					</div>
+					<div id=operateur></div>
+					<div id=etat></div>
+					<div id=position></div>
 				</div>
-				<div id=operateur></div>
-				<div id=etat></div>
-				<div id=position></div>
 			</div>
 		</div>
+
+		<audio id="audioPlayer">
+			<source src="doc/Alarme.mp3"/>
+		</audio>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>

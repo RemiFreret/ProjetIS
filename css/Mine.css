@@ -18,6 +18,7 @@ body {
   border-style: solid;
   border-color: grey;
   border-width: 2px;
+  padding: 5px;
 }
 
 #ecart {
@@ -32,6 +33,11 @@ body {
 
 .progressTitle {
   text-indent: 20px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.robotTitle {
   font-size: 15px;
   font-weight: bold;
 }

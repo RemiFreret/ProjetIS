@@ -1,5 +1,6 @@
 // Variables global du SVG de la map
 var draw = SVG('map').size(800, 600);
+var intervalAlerte;
 
 // Code à executer au démarage
 window.onload = function() {
@@ -14,7 +15,8 @@ window.onload = function() {
     dataType: 'text',
     success: function(data) {
       var rawSvg = data;
-      draw.svg(rawSvg)
+      draw.svg(rawSvg);
+      document.getElementById("fond").setAttribute("onclick", "resetInfo()");
     },
     error: function(data) {
       console.log("Error on init SVG");
@@ -39,6 +41,11 @@ window.onload = function() {
   infoPlus();
 
 } // Fin onload
+
+function resetInfo() {
+  document.getElementById("infoPlusMain").style.display = "";
+  document.getElementById("infoPlusRobot").style.display = "none";
+}
 
 // Initialisation des champs date et heure
 function initDate() {
@@ -72,29 +79,31 @@ function initRobot(nbRobot) {
   for (var i = 0; i < nbRobot; i++) {
     robots[i] = draw.circle(14).id("Robot"+(i+1)).fill("#e3e3e3");
     updateRobot(robots[i]);
-    document.getElementById("Robot"+(i+1)).setAttribute( "onclick","robotOnClic("+ (i+1) + ")");
+    document.getElementById("Robot" + (i+1)).setAttribute("onclick", "infoRobot(" + (i+1) + ")");
   }
 
 } // Fin initRobot
 
-function robotOnClic(i) {
-	document.getElementById("image_mine").setAttribute("src","/ProjetIS/img/Robot" + i + ".jpg");
+function infoRobot(i) {
+  document.getElementById("infoPlusMain").style.display = "none";
 	$.ajax({
     url: 'php/Redirection.php',
     data: "requete=infoRobot&robot=" + i,
     dataType: 'json',
     success: function(data) {
-  		document.getElementById('progress5').style.width =data[0].batterie + "%"
-  		document.getElementById('spanProgress5').innerHTML = data[0].batterie
-  		document.getElementById('operateur').innerHTML = data[0].nomOpérateur
-  		document.getElementById('position').innerHTML = data[0].nomPosition
-  		document.getElementById('etat').innerHTML = data[0].nomEtat
+    	document.getElementById("image_mine").setAttribute("src","/ProjetIS/img/Robot" + i + ".jpg");
+  		document.getElementById('progress5').style.width =data[0].batterie + "%";
+  		document.getElementById('spanProgress5').innerHTML = data[0].batterie + "%";
+  		document.getElementById('operateur').innerHTML = '<info class="robotTitle">Opérateur :</info> ' + data[0].nomOpérateur;
+  		document.getElementById('etat').innerHTML = '<info class="robotTitle">Etat :</info> ' + data[0].nomEtat;
+      document.getElementById('position').innerHTML = '<info class="robotTitle">Position :</info> ' + data[0].nomPosition;
+      document.getElementById("infoPlusRobot").style.display = "";
   	},
     error: function(data) {
       console.log("Error");
     }
   });
-} // Fin robotOnClic
+} // Fin infoRobot
 
 // Mise à jour automatique des robots
 function updateRobot(robot) {
@@ -121,7 +130,7 @@ function updateRobot(robot) {
         }
       },
       error: function(data) {
-        console.log("Error");
+        console.log("Error on updateRobot");
       }
     });
   }, 5000);
@@ -157,8 +166,8 @@ function infoMine() {
         var date1 = new Date(debut[2], debut[1]-1, debut[0]);
         var date2 = new Date();
         var diffDays = Math.trunc((date2 - date1) / (1000 * 60 * 60 * 24)); // Nb de jour depuis le début
-        var ecartMoule = data[0].dechetExtrait - ((data[0].mouleAjd * data[0].mouleJour) * diffDays); // Ecart en nb de moule
-        var ecartJour = Math.trunc(ecartMoule / (8*3)); // Ecart en nb de jour
+        var ecartMoule = (data[0].dechetExtrait - ((data[0].mouleAjd * data[0].mouleJour) * diffDays)) / data[0].capMoule; // Ecart en nb de moule
+        var ecartJour = Math.trunc(ecartMoule / (data[0].mouleJour)); // Ecart en nb de jour
         var str = "";
         if (ecartMoule > 0) {
           if (ecartJour > 0) {
@@ -196,8 +205,10 @@ function infoPlus() {
       data: "requete=infoPlus",
       dataType: 'json',
       success: function(data) {
-        console.log(data.length);
         for (var i = 0; i < data.length; i++) {
+          if (data[0].type == 0) {
+            setAlerte(data[0]);
+          }
           var tr = document.getElementById("alerte" + (i+1))
           var type = "";
           var str = "";
@@ -216,8 +227,33 @@ function infoPlus() {
         }
       },
       error: function(data) {
-        console.log("Error on infoPlus1");
+        console.log("Error on infoPlus");
       }
     });
-  }, 5000);
+  }, 1000);
 } // Fin infoPlus
+
+function setAlerte(data) {
+
+  var player = document.querySelector('#audioPlayer');
+  var intervalAlerte;
+
+  var date1 = new Date(data.date);
+  var date2 = new Date();
+  var diff = Math.trunc((date2 - date1) / (1000));
+
+  if (diff < 31 && diff > -1) {
+    player.play()
+    SVG.get("fond").fill("#fc1919");
+    SVG.get(data.nomPosition).fill("#ffffff");
+    setTimeout(function () {
+      SVG.get("fond").fill("#005fbf");
+      SVG.get(data.nomPosition).fill("#fc1919");
+    }, 500);
+  }
+  else {
+    SVG.get(data.nomPosition).fill("#ffffff");
+    player.pause();
+    player.currentTime = 0;
+  }
+} // Fin setAlerte

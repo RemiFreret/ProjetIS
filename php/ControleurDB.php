@@ -11,10 +11,10 @@
     public function updateRobot ($robotID) {
       $bdd = ConnectionDB::getConnection();
 
-      $query = "SELECT R.nomRobot, P.nomPosition, E.couleur, R.batterie, R.nomOpérateur FROM Robot as R, Etat as E, Position as P WHERE R.etat = E.id AND R.position = P.id AND R.id = ".$robotID;
+      $query = "SELECT R.nomRobot, P.nomPosition, E.couleur FROM Robot as R, Etat as E, Position as P WHERE R.etat = E.id AND R.position = P.id AND R.id = :robotID";
 
       $requete = $bdd->prepare($query);
-      $requete->execute();
+      $requete->execute(array(':robotID' => $robotID));
       echo json_encode($requete->fetchAll());
     }
 
@@ -40,22 +40,22 @@
       echo json_encode($requete->fetchAll());
     }
 	//return information about a robot
-	public function infoRobot ($robotID) {
+  	public function infoRobot ($robotID) {
       $bdd = ConnectionDB::getConnection();
 
-      $query = "SELECT R.nomRobot, P.nomPosition, E.nomEtat, R.batterie, R.nomOpérateur FROM Robot as R, Etat as E, Position as P WHERE R.etat = E.id AND R.position = P.id AND R.id = ".$robotID;
+      $query = "SELECT R.nomRobot, P.nomPosition, E.nomEtat, R.batterie, R.nomOpérateur FROM Robot as R, Etat as E, Position as P WHERE R.etat = E.id AND R.position = P.id AND R.id = :robotID";
 
       $requete = $bdd->prepare($query);
-      $requete->execute();
+      $requete->execute(array(':robotID' => $robotID));
       echo json_encode($requete->fetchAll());
     }
-	
+
 
     // Return the Alerte with Robot
     public function infoPlus () {
       $bdd = ConnectionDB::getConnection();
 
-      $query = "SELECT A.type, A.date, A.description, R.nomRobot, P.nomPosition FROM Alerte A, Position P, Robot R WHERE A.idRobot = R.id AND A.position = P.id ORDER BY date DESC LIMIT 5";
+      $query = "SELECT A.type, A.date, A.description, R.nomRobot, P.nomPosition FROM Alerte A, Position P, Robot R WHERE A.idRobot = R.id AND A.position = P.id AND A.date < CURRENT_TIMESTAMP ORDER BY date DESC LIMIT 5";
 
       $requete = $bdd->prepare($query);
       $requete->execute();

@@ -5,7 +5,7 @@
   <title>Layer 1</title>
   <rect fill="#005fbf" stroke="#000000" x="18.25004" y="26.07368" width="700" height="530" id="fond"/>
   <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="416.34691" y="21.83627" width="12.56503" height="209.41703" id="asc1"/>
-  <rect fill="#fc1919" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="398.60368" y="11.57814" width="48.37043" height="20.54086" id="dome"/>
+  <rect fill="#000000" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="398.60368" y="11.57814" width="48.37043" height="20.54086" id="dome"/>
   <rect transform="matrix(2.04054, -0.470889, 0.470889, 2.04054, -46.7971, 66.1761)" id="tunnel2" fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="131.4671" y="72.06911" width="54.84169" height="6"/>
   <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="259.13081" y="125.15408" width="157.06277" height="12.56503" id="tunnel1"/>
   <rect fill="#ffffff" stroke="#000000" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="416.50631" y="230.55389" width="12.56503" height="209.41703" id="asc2"/>
