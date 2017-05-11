@@ -35,7 +35,8 @@ window.onload = function() {
   });
 
   // Liste des fonctions à appeler au démarage
-  infoMine()
+  infoMine();
+  infoPlus();
 
 } // Fin onload
 
@@ -78,7 +79,7 @@ function initRobot(nbRobot) {
 
 function robotOnClic() {
   //TODO
-}
+} // Fin robotOnClic
 
 // Mise à jour automatique des robots
 function updateRobot(robot) {
@@ -94,7 +95,6 @@ function updateRobot(robot) {
         var x = position.x + (position.width/2);
         var y = position.y + (position.height/2);
         robot.cx(x).cy(y).fill(couleur);
-        console.log(position.id);
         if (position.id.localeCompare("tunnel2") == 0) {
           robot.cx("290").cy("150");
         }
@@ -171,27 +171,39 @@ function infoMine() {
       }
     });
   }, 5000);
-}
+} // Fin infoMine
 
+function infoPlus() {
 
+  setInterval(function () {
+    $.ajax({
+      url: 'php/Redirection.php',
+      data: "requete=infoPlus",
+      dataType: 'json',
+      success: function(data) {
+        console.log(data.length);
+        for (var i = 0; i < data.length; i++) {
+          var tr = document.getElementById("alerte" + (i+1))
+          var type = "";
+          var str = "";
+          if (data[i].type == 0) {
+            type = "Alarme";
+            tr.setAttribute("class", "danger");
+          }
+          if (data[i].type == 1) {
+            type = "Info";
+            tr.setAttribute("class", "info");
+          }
 
-/************ ZONE DE TEST ************/
-
-//document.getElementById("fond").setAttribute("fill", "#000000");
-
-/*
-$("#tunnel1").mouseover( function () {
-  console.log(this);
-  this.setAttribute("fill", "#000000");
-});
-*/
-
-/*
-$("#tunnel1").hover( function () {
-  this.setAttribute("fill", "#000000");
-}, function () {
-  this.setAttribute("fill", "#ffffff");
-} )
-*/
-
-//$("#fond").animate({ease: '>', delay: '2.5s'}).attr({ fill: '#000000' }).animate().attr({ fill: '#000000' });
+          str += "<td>" + data[i].date + "</td>";
+          str += "<td>" + type + "</td>";
+          str += "<td>" + data[i].description + "</td>";
+          tr.innerHTML = str;
+        }
+      },
+      error: function(data) {
+        console.log("Error on infoPlus1");
+      }
+    });
+  }, 5000);
+} // Fin infoPlus

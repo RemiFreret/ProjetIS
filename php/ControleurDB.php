@@ -40,5 +40,15 @@
       echo json_encode($requete->fetchAll());
     }
 
+    // Return the Alerte with Robot
+    public function infoPlus () {
+      $bdd = ConnectionDB::getConnection();
+
+      $query = "SELECT A.type, A.date, A.description, R.nomRobot, P.nomPosition FROM Alerte A, Position P, Robot R WHERE A.idRobot = R.id AND A.position = P.id ORDER BY date DESC LIMIT 5";
+
+      $requete = $bdd->prepare($query);
+      $requete->execute();
+      echo json_encode($requete->fetchAll());
+    }
   }
  ?>

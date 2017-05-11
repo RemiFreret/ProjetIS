@@ -15,6 +15,10 @@
       $bdd = ControleurDB::infoMine();
       echo $bdd;
     }
+    if (strcmp($_GET["requete"], "infoPlus") == 0) {
+      $bdd = ControleurDB::infoPlus();
+      echo $bdd;
+    }
   }
 
   if ( isset($_GET["file"]) ) {
