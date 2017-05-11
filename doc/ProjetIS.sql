@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 11, 2017 at 02:53 PM
+-- Generation Time: May 11, 2017 at 10:13 PM
 -- Server version: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
@@ -31,8 +31,8 @@ CREATE TABLE `Alerte` (
   `type` varchar(20) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` varchar(200) NOT NULL,
-  `position` int(11) DEFAULT NULL,
-  `idRobot` int(11) DEFAULT NULL
+  `position` int(11) NOT NULL DEFAULT '1',
+  `idRobot` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -40,10 +40,11 @@ CREATE TABLE `Alerte` (
 --
 
 INSERT INTO `Alerte` (`id`, `type`, `date`, `description`, `position`, `idRobot`) VALUES
-(1, 'Alarme', '2017-05-11 14:28:02', 'Eboulement dans le tunnel n°1, le passage a été debloqué.', 11, NULL),
-(2, 'Info', '2017-05-11 14:28:02', 'Réparation du robot n°2', NULL, 2),
-(3, 'Alarme', '2017-05-11 14:33:54', 'Début d\'inondation dans la cave 3.', 3, NULL),
-(4, 'Info', '2017-05-11 14:33:54', 'Révision du robot n°1', NULL, 1);
+(1, '0', '2017-05-11 14:20:02', 'Eboulement dans le tunnel n°1, le passage a été debloqué.', 11, 1),
+(2, '1', '2017-05-11 14:28:02', 'Réparation du robot n°2', 1, 2),
+(3, '1', '2017-05-11 14:33:54', 'Révision du robot n°1', 1, 1),
+(4, '0', '2017-05-11 22:04:00', 'Glissement de terrain dans la cave n°7.\r\n', 7, 1),
+(5, '0', '2017-05-11 22:10:40', 'Eboulement dans la cave n°1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -62,10 +63,10 @@ CREATE TABLE `Etat` (
 --
 
 INSERT INTO `Etat` (`id`, `nomEtat`, `couleur`) VALUES
-(1, 'off', '#818181'),
-(2, 'on', '#26FF00'),
-(3, 'hs', '#F00000'),
-(4, 'reparation', '#F0B400');
+(1, 'OFF', '#818181'),
+(2, 'ON', '#26FF00'),
+(3, 'HS', '#F00000'),
+(4, 'Maintenance', '#F0B400');
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,7 @@ CREATE TABLE `Robot` (
 INSERT INTO `Robot` (`id`, `nomRobot`, `etat`, `position`, `batterie`, `nomOpérateur`) VALUES
 (1, 'Robot1', 2, 11, 50, 'Philippe'),
 (2, 'Robot2', 3, 16, 100, 'Merlin'),
-(3, 'Robot3', 1, 1, 75, 'Michel Vedette');
+(3, 'Robot3', 4, 20, 75, 'Michel Vedette');
 
 --
 -- Indexes for dumped tables
