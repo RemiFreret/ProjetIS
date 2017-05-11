@@ -1,5 +1,5 @@
 // Variables global du SVG de la map
-var draw = SVG('map').size(800, 600)
+var draw = SVG('map').size(800, 600);
 
 // Code à executer au démarage
 window.onload = function() {
@@ -69,11 +69,16 @@ function initRobot(nbRobot) {
   var robots = [nbRobot];
 
   for (var i = 0; i < nbRobot; i++) {
-    robots[i] = draw.circle(14).id("Robot"+(i+1)).fill("#ffffff");
+    robots[i] = draw.circle(14).id("Robot"+(i+1)).fill("#e3e3e3");
     updateRobot(robots[i]);
+    //TODO onclic pour chaque robot
   }
 
 } // Fin initRobot
+
+function robotOnClic() {
+  //TODO
+}
 
 // Mise à jour automatique des robots
 function updateRobot(robot) {
@@ -89,11 +94,16 @@ function updateRobot(robot) {
         var x = position.x + (position.width/2);
         var y = position.y + (position.height/2);
         robot.cx(x).cy(y).fill(couleur);
-        if (position.transform != null) {
-          //console.log("test");
-          robot.attr("transform:"+ position.transform);
+        console.log(position.id);
+        if (position.id.localeCompare("tunnel2") == 0) {
+          robot.cx("290").cy("150");
         }
-
+        if (position.id.localeCompare("tunnel4") == 0) {
+          robot.cx("305").cy("265");
+        }
+        if (position.id.localeCompare("tunnel7") == 0) {
+          robot.cx("249").cy("397");
+        }
       },
       error: function(data) {
         console.log("Error");
@@ -135,8 +145,6 @@ function infoMine() {
         var ecartMoule = data[0].dechetExtrait - ((data[0].mouleAjd * data[0].mouleJour) * diffDays); // Ecart en nb de moule
         var ecartJour = Math.trunc(ecartMoule / (8*3)); // Ecart en nb de jour
         var str = "";
-        console.log(ecartMoule);
-        console.log(ecartJour);
         if (ecartMoule > 0) {
           if (ecartJour > 0) {
             document.getElementById('ecart').innerHTML = ecartJour + " jour d'avance (+" + ecartMoule + " moules)";
