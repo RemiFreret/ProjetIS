@@ -1,9 +1,11 @@
 // Variables global du SVG de la map
 var draw = SVG('map').size(800, 600);
-var intervalAlerte;
+var cpt = 0;
 
 // Code à executer au démarage
 window.onload = function() {
+
+  document.getElementById("buttonBDD").setAttribute("onclick", "majBDD()");
 
   // Initialisation de la date et de l'heure
   initDate();
@@ -45,6 +47,25 @@ window.onload = function() {
 function resetInfo() {
   document.getElementById("infoPlusMain").style.display = "";
   document.getElementById("infoPlusRobot").style.display = "none";
+}
+
+function majBDD() {
+  $.ajax({
+    url: 'php/Redirection.php',
+    data: "requete=majBDD&cpt=" + cpt,
+    dataType: 'text',
+    success: function(data) {
+      console.log(data);
+  	},
+    error: function(data) {
+      console.log("Error");
+    }
+  });
+  cpt++;
+  if (cpt == 15) {
+    cpt = 0;
+  }
+  document.getElementById("buttonBDD").innerHTML = "Etape " + cpt;
 }
 
 // Initialisation des champs date et heure
@@ -133,7 +154,7 @@ function updateRobot(robot) {
         console.log("Error on updateRobot");
       }
     });
-  }, 5000);
+  }, 1000);
 
 }// Fin updateRobot
 
@@ -166,7 +187,8 @@ function infoMine() {
         var date1 = new Date(debut[2], debut[1]-1, debut[0]);
         var date2 = new Date();
         var diffDays = Math.trunc((date2 - date1) / (1000 * 60 * 60 * 24)); // Nb de jour depuis le début
-        var ecartMoule = (data[0].dechetExtrait - ((data[0].mouleAjd * data[0].mouleJour) * diffDays)) / data[0].capMoule; // Ecart en nb de moule
+        diffDays += 1;
+        var ecartMoule = ((data[0].dechetExtrait - ((data[0].capMoule * data[0].mouleJour) * diffDays)) / data[0].capMoule) - data[0].mouleAjd; // Ecart en nb de moule
         var ecartJour = Math.trunc(ecartMoule / (data[0].mouleJour)); // Ecart en nb de jour
         var str = "";
         if (ecartMoule > 0) {
@@ -174,7 +196,7 @@ function infoMine() {
             document.getElementById('ecart').innerHTML = ecartJour + " jour d'avance (+" + ecartMoule + " moules)";
           }
           else {
-            document.getElementById('ecart').innerHTML = "+" + ecartMoule + "moules";
+            document.getElementById('ecart').innerHTML = "+" + ecartMoule + " moules";
           }
           document.getElementById('ecart').style.color = "green";
         }
@@ -194,7 +216,7 @@ function infoMine() {
         console.log("Error on infoMine");
       }
     });
-  }, 5000);
+  }, 1000);
 } // Fin infoMine
 
 function infoPlus() {
@@ -236,13 +258,12 @@ function infoPlus() {
 function setAlerte(data) {
 
   var player = document.querySelector('#audioPlayer');
-  var intervalAlerte;
 
   var date1 = new Date(data.date);
   var date2 = new Date();
   var diff = Math.trunc((date2 - date1) / (1000));
 
-  if (diff < 31 && diff > -1) {
+  if (diff < 11 && diff > -1) {
     player.play()
     SVG.get("fond").fill("#fc1919");
     SVG.get(data.nomPosition).fill("#ffffff");

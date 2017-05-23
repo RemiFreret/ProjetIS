@@ -2,10 +2,10 @@
 -- version 4.5.4.1deb2ubuntu2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 11, 2017 at 10:13 PM
--- Server version: 5.7.18-0ubuntu0.16.04.1
--- PHP Version: 7.0.15-0ubuntu0.16.04.4
+-- Client :  localhost
+-- Généré le :  Mar 23 Mai 2017 à 19:53
+-- Version du serveur :  5.7.18-0ubuntu0.16.04.1
+-- Version de PHP :  7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ProjetIS`
+-- Base de données :  `ProjetIS`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Alerte`
+-- Structure de la table `Alerte`
 --
 
 CREATE TABLE `Alerte` (
@@ -36,20 +36,48 @@ CREATE TABLE `Alerte` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Alerte`
+-- Contenu de la table `Alerte`
 --
 
 INSERT INTO `Alerte` (`id`, `type`, `date`, `description`, `position`, `idRobot`) VALUES
-(1, '0', '2017-05-11 14:20:02', 'Eboulement dans le tunnel n°1, le passage a été debloqué.', 11, 1),
-(2, '1', '2017-05-11 14:28:02', 'Réparation du robot n°2', 1, 2),
+(1, '0', '2017-05-22 14:20:02', 'Eboulement dans le tunnel n°1, le passage a été debloqué.', 11, 1),
+(2, '1', '2017-05-20 14:28:02', 'Réparation du robot n°2', 1, 2),
 (3, '1', '2017-05-11 14:33:54', 'Révision du robot n°1', 1, 1),
-(4, '0', '2017-05-11 22:04:00', 'Glissement de terrain dans la cave n°7.\r\n', 7, 1),
-(5, '0', '2017-05-11 22:10:40', 'Eboulement dans la cave n°1', 1, 1);
+(4, '0', '2017-05-18 22:04:00', 'Glissement de terrain dans la cave n°7.\r\n', 7, 1),
+(5, '0', '2017-05-12 10:24:00', 'Eboulement dans la cave n°1', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Etat`
+-- Structure de la table `composante`
+--
+
+CREATE TABLE `composante` (
+  `id` int(11) NOT NULL,
+  `nomComposante` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `composante`
+--
+
+INSERT INTO `composante` (`id`, `nomComposante`) VALUES
+(1, 'Bibliothèque universitaire'),
+(2, 'Centre de recherche Christiaan HUYGENS'),
+(3, 'Compositic'),
+(4, 'Centre Kerjulaude'),
+(5, 'École d\'ingénieurs ENSIBS'),
+(6, 'Faculté Droit, Sciences Économiques & Gestion'),
+(7, 'Faculté Lettres, Langues, Sciences Humaines & Sociales'),
+(8, 'Faculté Sciences & Sciences de l\'Ingénieur'),
+(9, 'IUT'),
+(10, 'Maison des Étudiants'),
+(11, 'Présidence');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Etat`
 --
 
 CREATE TABLE `Etat` (
@@ -59,7 +87,7 @@ CREATE TABLE `Etat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Etat`
+-- Contenu de la table `Etat`
 --
 
 INSERT INTO `Etat` (`id`, `nomEtat`, `couleur`) VALUES
@@ -71,7 +99,7 @@ INSERT INTO `Etat` (`id`, `nomEtat`, `couleur`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Mine`
+-- Structure de la table `Mine`
 --
 
 CREATE TABLE `Mine` (
@@ -87,16 +115,16 @@ CREATE TABLE `Mine` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Mine`
+-- Contenu de la table `Mine`
 --
 
 INSERT INTO `Mine` (`id`, `dechetTotal`, `dechetExtrait`, `dechetExtraitMois`, `dechetExtraitSemaine`, `mouleJour`, `mouleAjd`, `capMoule`, `jourDebut`) VALUES
-(0, 76800, 10344, 240, 72, 8, 3, 3, '07/03/2016');
+(0, 76800, 10686, 606, 54, 8, 2, 3, '07/03/2016');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Position`
+-- Structure de la table `Position`
 --
 
 CREATE TABLE `Position` (
@@ -105,7 +133,7 @@ CREATE TABLE `Position` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Position`
+-- Contenu de la table `Position`
 --
 
 INSERT INTO `Position` (`id`, `nomPosition`) VALUES
@@ -135,7 +163,7 @@ INSERT INTO `Position` (`id`, `nomPosition`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Robot`
+-- Structure de la table `Robot`
 --
 
 CREATE TABLE `Robot` (
@@ -148,60 +176,66 @@ CREATE TABLE `Robot` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `Robot`
+-- Contenu de la table `Robot`
 --
 
 INSERT INTO `Robot` (`id`, `nomRobot`, `etat`, `position`, `batterie`, `nomOpérateur`) VALUES
-(1, 'Robot1', 2, 11, 50, 'Philippe'),
-(2, 'Robot2', 3, 16, 100, 'Merlin'),
-(3, 'Robot3', 4, 20, 75, 'Michel Vedette');
+(1, 'Robot1', 1, 20, 95, 'Philippe'),
+(2, 'Robot2', 2, 1, 53, 'Merlin'),
+(3, 'Robot3', 2, 14, 77, 'Michel Vedette');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables exportées
 --
 
 --
--- Indexes for table `Alerte`
+-- Index pour la table `Alerte`
 --
 ALTER TABLE `Alerte`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Etat`
+-- Index pour la table `composante`
+--
+ALTER TABLE `composante`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `Etat`
 --
 ALTER TABLE `Etat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Mine`
+-- Index pour la table `Mine`
 --
 ALTER TABLE `Mine`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Position`
+-- Index pour la table `Position`
 --
 ALTER TABLE `Position`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nom` (`nomPosition`);
 
 --
--- Indexes for table `Robot`
+-- Index pour la table `Robot`
 --
 ALTER TABLE `Robot`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT for table `Position`
+-- AUTO_INCREMENT pour la table `Position`
 --
 ALTER TABLE `Position`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
--- AUTO_INCREMENT for table `Robot`
+-- AUTO_INCREMENT pour la table `Robot`
 --
 ALTER TABLE `Robot`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

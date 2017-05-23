@@ -24,6 +24,11 @@
   		$bdd = ControleurDB::infoRobot($robotID);
       echo $bdd;
     }
+    if (strcmp($_GET["requete"], "majBDD") == 0) {
+  		$cpt = $_GET["cpt"];
+  		$bdd = ControleurDB::majBDD($cpt);
+      echo $bdd;
+    }
   }
 
   if ( isset($_GET["file"]) ) {
